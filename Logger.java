@@ -10,7 +10,7 @@ public class Logger {
     private final Queue<String> eventQueue;
     private final ExecutorService executor;
 
-    // Constructor takes log file name and current log level
+  
     public Logger(String logFile, LogLevel currentLogLevel) {
         this.logWriter = new LogWriter(logFile);
         this.currentLogLevel = currentLogLevel;
@@ -19,7 +19,7 @@ public class Logger {
         this.executor = Executors.newSingleThreadExecutor();
     }
 
-    // Method to log messages
+   
     public void log(LogLevel level, String message) {
         if (level.ordinal() >= currentLogLevel.ordinal()) {
             LogEntry logEntry = new LogEntry(level, message);
@@ -27,14 +27,12 @@ public class Logger {
         }
     }
 
-    // Start method for a process (record the start time)
     public void start(String processId) {
         long startTime = System.currentTimeMillis();
         processStartTimes.put(processId, startTime);
         log(LogLevel.INFO, "Started process: " + processId + " at " + startTime);
     }
 
-    // End method for a process (record the end time)
     public void end(String processId) {
         Long startTime = processStartTimes.get(processId);
         if (startTime != null) {
@@ -45,7 +43,6 @@ public class Logger {
         }
     }
 
-    // Poll method to retrieve the next process from the queue
     public void poll() {
         if (!eventQueue.isEmpty()) {
             String processId = eventQueue.poll();
@@ -55,7 +52,6 @@ public class Logger {
         }
     }
 
-    // Convenience methods for different log levels
     public void debug(String message) {
         log(LogLevel.DEBUG, message);
     }

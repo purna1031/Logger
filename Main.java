@@ -7,8 +7,7 @@ public class Main {
         logger.debug("This is a debug message");
         logger.info("This is an info message");
         logger.error("This is an error message");
-    
-            // Simulate process events
+
             logger.start("1");
             logger.poll();
             logger.end("1");
@@ -21,8 +20,7 @@ public class Main {
             logger.poll();
             logger.end("3");
     
-            logger.poll(); // This will show that there's nothing to poll if no more processes are added
-        }
+            logger.poll(); 
     
 }
-
+}
